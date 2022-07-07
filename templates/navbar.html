@@ -1,0 +1,8 @@
+<a href="{% url 'home' %}">Home</a>
+
+{% if not request.user.is_authenticated %}
+<a href="{% url 'user_login' %}">Zaloguj</a>
+{% else %}
+<a href="{% url 'user_logout' %}">Wyloguj</a>
+{% endif %}
+<small>{{user.username}}</small>
