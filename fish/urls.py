@@ -12,4 +12,6 @@ urlpatterns = [
     path('room/<str:pk>/', views.room_page, name='room_page'),
     path('create-room/', views.room_form, name='room_form'),
     path('messages-component', views.message_component, name='message_component'),
+    path('rooms-component', views.rooms_component, name='rooms_component'),
+    path('topic-component', views.topics_component, name='topic_component'),
 ]

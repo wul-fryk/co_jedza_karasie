@@ -1,12 +1,24 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<div>
-    <a href="{% url 'room_form' %}">Stwórz pokój</a>
-    {% for room in rooms %}
+<style>
+    .home_page_container {
+        display: grid;
+        grid-template-columns: 2fr 3fr 1fr;
+    }
+    body {
+        background-color: slateblue;
+    }
+</style>
+<div class="home_page_container">
     <div>
-        <a href="{% url 'room_page' room.id %}">{{room}}</a>
+        {% include 'fish/topics_component.html' %}
     </div>
-    {% endfor %}
+    <div>
+        {% include 'fish/rooms_component.html' %}
+    </div>
+    <div>
+        {% include 'fish/messages_component.html' %}
+    </div>
 </div>
 {% endblock content %}

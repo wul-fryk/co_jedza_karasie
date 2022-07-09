@@ -9,30 +9,12 @@
     <script src='main.js'></script> -->
 </head>
 <body>
-    <a href="{% url 'message_component' %}">Przejdź</a>
+
     {% include 'navbar.html' %}
     <hr>
-    <style>
-        .main_container {
-            display: grid;
-            grid-template-columns: 1fr 3fr 1fr;
-        }
-    </style>
-    <div class="main_container">
-        <div>
-            {% include 'fish/messages_component.html' %}
-        </div>
-        <div>
-            {% block content %}
+    {% block content %}
 
 
-            {% endblock content %}
-        </div>
-        <div>
-            <h1>Matata</h1>
-        </div>
-    </div>
-
-
+    {% endblock content %}
 </body>
 </html>

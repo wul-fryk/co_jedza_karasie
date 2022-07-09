@@ -1,3 +1,9 @@
-{% for message in messages_comp %}
-<li>{{ message }}</li>
-{% endfor %}
+<div>
+    <ul>
+        {% for mesg in messages_comp %}
+        <li>
+            {{mesg}}
+        </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -52,9 +52,12 @@ def user_logout(request):
     logout(request)
     return redirect('/')
 
+
 def home(request):
     rooms = Room.objects.all()
-    context = {'rooms':rooms}
+    topics = Topic.objects.all()
+    messages_comp = Message.objects.all()
+    context = {'rooms':rooms, 'messages_comp':messages_comp, 'topics':topics}
     return render(request, 'fish/home.html', context)
 
 def room_page(request, pk):
@@ -85,5 +88,12 @@ def message_component(request):
     context = {"messages_comp":messages_comp}
     return render(request, 'fish/messages_component.html', context)
 
+def rooms_component(request):
+    rooms_comp = Room.objects.all()
+    context  = {'rooms_comp':rooms_comp}
+    return render(request, 'fish/rooms_component.html', context)
 
-
+def topics_component(request):
+    topics_comp = Topic.objects.all()
+    context = {'topics_comp':topics_comp}
+    return render(request, 'fish/topics_component.html', context)

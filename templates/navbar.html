@@ -1,8 +1,16 @@
-<a href="{% url 'home' %}">Home</a>
+<style>
+    .navbar {
+        background-color: royalblue;
+    }
+</style>
 
-{% if not request.user.is_authenticated %}
-<a href="{% url 'user_login' %}">Zaloguj</a>
-{% else %}
-<a href="{% url 'user_logout' %}">Wyloguj</a>
-{% endif %}
-<small>{{user.username}}</small>
+<div class="navbar">
+    <a href="{% url 'home' %}">Home</a>
+
+    {% if not request.user.is_authenticated %}
+    <a href="{% url 'user_login' %}">Zaloguj</a>
+    {% else %}
+    <a href="{% url 'user_logout' %}">Wyloguj</a>
+    {% endif %}
+    <small>{{user.username}}</small>
+</div>
