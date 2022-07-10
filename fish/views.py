@@ -82,7 +82,7 @@ def room_form(request):
 
 def room_page(request, pk):
     rooms = Room.objects.get(id=pk)
-    messages_room = Message.objects.all()
+    messages_room = rooms.message_set.all()
     context = {'rooms':rooms,"messages_room":messages_room}
     if request.method == 'POST':
         Message.objects.create(
@@ -116,10 +116,17 @@ def update(request, pk):
 
 def profile_page(request, pk):
     profile_link = User.objects.get(id=pk)
-    context = {'profile_link':profile_link}
+    rooms = profile_link.room_set.all()
+    message = profile_link.message_set.all()
+    topics = Topic.objects.all()
+    context = {'profile_link':profile_link, 'message':message, 'topics':topics, 'rooms':rooms}
     return render(request, 'fish/profile_page.html', context)
 
-
+def topics_page(request, pk):
+    rooms = Room.objects.get(id=pk)
+    topics = Topic.objects.all()
+    context = {'rooms':rooms, 'topics':topics}
+    return render(request, 'fish/topics.html', context)
 
 def message_component(request):
     messages_comp = Message.objects.all()
@@ -133,5 +140,7 @@ def rooms_component(request):
 
 def topics_component(request):
     topics_comp = Topic.objects.all()
+    if request.method == 'POST':
+        pass
     context = {'topics_comp':topics_comp}
     return render(request, 'fish/topics_component.html', context)

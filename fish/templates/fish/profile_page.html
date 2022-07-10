@@ -2,22 +2,33 @@
 {% block content %}
 
     <style>
-        .profile_container {
+        .content {
             display: grid;
             grid-template-columns: 1fr 3fr 1fr;
         }
     </style>
+    
     <div class="profile_container">
-        <div>
-
-        </div>
-        <div>
-            <h3>Profil użytkownika: <a href="{% url 'profile_page' user.id %}">@{{profile_link}}</a></h3>
-            <h4>Ostatnia aktywność:</h4>
-            {% include 'fish/rooms_component.html' %}
-        </div>
-        <div>
-            
+        <h2>Profil użytkownika: <a href="{% url 'profile_page' user.id %}">@{{profile_link}}</a></h2>
+        <div class="content">
+            <div>
+                <h3>Ulubione tematy:</h3>
+                {% for topic in topics %}
+                <p><a href="{% url 'topics_page' topic.id %}">{{topic}}</a></p>
+                {% endfor %}
+            </div>
+            <div>
+                <h3>Ostatnia aktywność:</h3>
+                {% for mess in message %}
+                <p><a href="{% url 'room_page' mess.room_messages.id %}">{{mess.room_messages}}</a>: {{mess}} |{{mess.created|timesince}}</p>
+                {% endfor %}
+            </div>
+            <div>
+                <h3>Rozmowy rozpoczęte przez <a href="{% url 'profile_page' user.id %}">@{{profile_link}}:</a></h3>
+                {% for room in rooms %}
+                <p><a href="{% url 'room_page' room.id %}">{{room}}</a></p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 

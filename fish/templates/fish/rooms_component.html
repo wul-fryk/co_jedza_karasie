@@ -1,7 +1,9 @@
 {% for room in rooms %}
 <div>
+    <h3>Ostatnio zaktualizowane fora:</h3>
+    <a href="{% url 'room_form' %}">Stwórz pokój</a>
     {% if request.user == room.host %}
-    <a href="{% url 'delete' room.id %}">Usuń</a>
+    <a href="{% url 'delete_room' room.id %}">Usuń</a>
     {% endif %}
 
     <h3><a href="{% url 'room_page' room.id %}">{{room}}</a></h3>

@@ -29,7 +29,7 @@
                 {% for message in messages_room %}
                     <p>
                         {% if request.user == message.owner %}
-                        <a href="{% url 'delete' message.id %}">Usuń</a>
+                        <a href="{% url 'delete_message' message.id %}">Usuń</a>
                         {% endif %}
                         <a href="{% url 'profile_page' message.owner.id %}">@{{message.owner}}</a>
                         <span> {{message.created|timesince}} temu:</span>

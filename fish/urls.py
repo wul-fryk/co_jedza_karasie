@@ -11,9 +11,11 @@ urlpatterns = [
 
     path('room/<str:pk>/', views.room_page, name='room_page'),
     path('create-room/', views.room_form, name='room_form'),
-    path('delete/<str:pk>', views.delete_room, name='delete'),
-    path('delete/<str:pk>', views.delete_message, name='delete'),
+    path('delete_room/<str:pk>', views.delete_room, name='delete_room'),
+    path('delete_message/<str:pk>', views.delete_message, name='delete_message'),
     path('profile/<str:pk>', views.profile_page, name='profile_page'),
+
+    path('topic/<str:pk>', views.topics_page, name='topics_page'),
 
     path('messages-component', views.message_component, name='message_component'),
     path('rooms-component', views.rooms_component, name='rooms_component'),

@@ -1,7 +1,11 @@
 <ul>
+    <h3>Najpopularniejsze tematy:</h3>
+    <form method="post" action="">
+        <input type="text">
+    </form>
     {% for topic in topics %}
     <li>
-        {{topic.topic_name}}
+        <a href="{% url 'topics_page' topic.id %}">{{topic.topic_name}}</a>
     </li>
     {% endfor %}
 </ul>
