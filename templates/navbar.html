@@ -11,6 +11,8 @@
     <a href="{% url 'user_login' %}">Zaloguj</a>
     {% else %}
     <a href="{% url 'user_logout' %}">Wyloguj</a>
+    <a href="{% url 'profile_page' user.id %}">@{{user.username}}</a>
     {% endif %}
-    <small>{{user.username}}</small>
+
+
 </div>

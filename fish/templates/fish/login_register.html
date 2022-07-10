@@ -11,7 +11,13 @@
             <input type="password" name="password" placeholder="Wprowadź hasło" required/>
             
             <input type="submit" name="login_register_button"/>
-            
+
+            <ul class="messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+         
             <p>Nie masz jeszcze konta?</p>
             <a href="{% url 'register' %}">Zarejestruj się</a>
         </form>

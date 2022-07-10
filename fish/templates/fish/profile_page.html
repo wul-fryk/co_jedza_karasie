@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% block content %}
+
+    <style>
+        .profile_container {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+        }
+    </style>
+    <div class="profile_container">
+        <div>
+
+        </div>
+        <div>
+            <h3>Profil użytkownika: <a href="{% url 'profile_page' user.id %}">@{{profile_link}}</a></h3>
+            <h4>Ostatnia aktywność:</h4>
+            {% include 'fish/rooms_component.html' %}
+        </div>
+        <div>
+            
+        </div>
+    </div>
+
+
+
+    
+{% endblock content %}

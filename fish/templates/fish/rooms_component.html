@@ -1,4 +1,3 @@
-<a href="{% url 'room_form' %}">Stwórz pokój</a>
 {% for room in rooms %}
 <div>
     <h3><a href="{% url 'room_page' room.id %}">{{room}}</a></h3>

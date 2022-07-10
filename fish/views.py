@@ -83,6 +83,11 @@ def room_form(request):
         return redirect("home")
     return render(request, 'fish/room_form.html', context)
 
+def profile_page(request, pk):
+    profile_link = User.objects.get(id=pk)
+    context = {'profile_link':profile_link}
+    return render(request, 'fish/profile_page.html', context)
+
 def message_component(request):
     messages_comp = Message.objects.all()
     context = {"messages_comp":messages_comp}
