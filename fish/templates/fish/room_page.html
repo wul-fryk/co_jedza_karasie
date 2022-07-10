@@ -4,7 +4,7 @@
     
 </style>
 <div>
-    <small>{{rooms.room_topic}}, {{room.host}}</small>
+    <small>{{topic}}, chat założony przez: <a href="{% url 'profile_page' rooms.host.id %}">@{{rooms.host}}</a></small>
     <h1>{{rooms.room_name}}</h1>
     <div>
         {{room}}
