@@ -1,31 +1,45 @@
 {% extends 'main.html' %}
 {% block content %}
 <style>
-    
+    .contenet_container {
+        display: grid;
+        grid-template-columns: 2fr 3fr 1fr;
+    }
 </style>
+<small>{{rooms.room_topic}}, <a href="{% url 'profile_page' rooms.host.id %}">@{{rooms.host}}</a></small>
 <div>
-    <small>{{topic}}, chat założony przez: <a href="{% url 'profile_page' rooms.host.id %}">@{{rooms.host}}</a></small>
-    <h1>{{rooms.room_name}}</h1>
     <div>
+        <h1>{{rooms.room_name}}</h1>
         {{room}}
     </div>
-    <div>
-        <form  method="POST" action="">
-            {% csrf_token %}
-            <input type="text" name='body' placeholder="Napisz swoją wiadomość">
-        </form>
+    <div class="contenet_container">
+        <div>
+            {{rooms.room_desription}}
+        </div>
+    
+        <div>
+    
+            <div>
+                <form  method="POST" action="">
+                    {% csrf_token %}
+                    <input type="text" name='body' placeholder="Napisz swoją wiadomość">
+                </form>
+            </div>
+            <div>
+                {% for message in messages_room %}
+                    <p>
+                        {% if request.user == message.owner %}
+                        <a href="{% url 'delete' message.id %}">Usuń</a>
+                        {% endif %}
+                        <a href="{% url 'profile_page' message.owner.id %}">@{{message.owner}}</a>
+                        <span> {{message.created|timesince}} temu:</span>
+                        <p>{{message}}</p>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+        
     </div>
-    <div>
-        {% for message in messages_room %}
-            <p>
-                {% if request.user == message.owner %}
-                <a href="{% url 'delete' message.id %}">Usuń</a>
-                {% endif %}
-                <a href="{% url 'profile_page' message.owner.id %}">@{{message.owner}}</a>
-                <span> {{message.created|timesince}} temu:</span>
-                <p>{{message}}</p>
-            </p>
-        {% endfor %}
-    </div>
+    
 </div>
 {% endblock content %}

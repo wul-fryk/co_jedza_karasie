@@ -5,7 +5,7 @@
         {% csrf_token %}
         <div>
             <label for="room_topic">Enter a topic</label>
-            <input required type="text" value="{{ room.topic.topic_name }}" name="topic" list="topic-list"/>
+            <input required type="text" value="{{ room.topic.topic_name }}" name="room_topic" list="topic-list"/>
             <datalist id="topic-list">
               <select id="room-topic">
                 {% for topic in topics %}
