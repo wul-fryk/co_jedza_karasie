@@ -53,18 +53,14 @@ def user_logout(request):
     return redirect('/')
 
 
+
+
 def home(request):
     rooms = Room.objects.all()
     topics = Topic.objects.all()
     messages_comp = Message.objects.all()
     context = {'rooms':rooms, 'messages_comp':messages_comp, 'topics':topics}
     return render(request, 'fish/home.html', context)
-
-def room_page(request, pk):
-    rooms = Room.objects.get(id=pk)
-    messages_room = Message.objects.all()
-    context = {'rooms':rooms,"messages_room":messages_room}
-    return render(request, 'fish/room_page.html', context)
 
 def room_form(request):
     room_form = Room_form()
@@ -80,13 +76,50 @@ def room_form(request):
             room_desription=request.POST.get('room_desription'),
         )
 
+
         return redirect("home")
     return render(request, 'fish/room_form.html', context)
+
+def room_page(request, pk):
+    rooms = Room.objects.get(id=pk)
+    messages_room = Message.objects.all()
+    context = {'rooms':rooms,"messages_room":messages_room}
+    if request.method == 'POST':
+        Message.objects.create(
+            room_messages = rooms,
+            owner = request.user,
+            body = request.POST.get('body')
+        )
+        return redirect('room_page', rooms.id)
+    return render(request, 'fish/room_page.html', context)
+
+def delete_message(request, pk):
+    message = Message.objects.get(id=pk)
+    if request.method == 'POST':
+        message.delete()
+        return redirect('home')
+    return render(request, 'fish/delete.html', {'instance':message})
+
+def delete_room(request, pk):
+    room = Room.objects.get(id=pk)
+    if request.method == 'POST':
+        room.delete()
+        return redirect('home')
+    return render(request, 'fish/delete.html', {'instance':room})
+
+def update(request, pk):
+    room = Room.objects.get(id=pk)
+
+    context = {'room':room}
+    return render
+
 
 def profile_page(request, pk):
     profile_link = User.objects.get(id=pk)
     context = {'profile_link':profile_link}
     return render(request, 'fish/profile_page.html', context)
+
+
 
 def message_component(request):
     messages_comp = Message.objects.all()

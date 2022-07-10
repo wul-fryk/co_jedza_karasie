@@ -4,18 +4,26 @@
     
 </style>
 <div>
-    <small>{{rooms.room_topic}}</small>
+    <small>{{rooms.room_topic}}, {{room.host}}</small>
     <h1>{{rooms.room_name}}</h1>
     <div>
         {{room}}
     </div>
     <div>
+        <form  method="POST" action="">
+            {% csrf_token %}
+            <input type="text" name='body' placeholder="Napisz swoją wiadomość">
+        </form>
+    </div>
+    <div>
         {% for message in messages_room %}
             <p>
-                <span>
-                {{message.owner}}:
-                {{message}}
-                </span>
+                {% if request.user == message.owner %}
+                <a href="{% url 'delete' message.id %}">Usuń</a>
+                {% endif %}
+                <a href="{% url 'profile_page' message.owner.id %}">@{{message.owner}}</a>
+                <span> {{message.created|timesince}} temu:</span>
+                <p>{{message}}</p>
             </p>
         {% endfor %}
     </div>
