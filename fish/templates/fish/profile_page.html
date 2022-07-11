@@ -13,8 +13,9 @@
         <div class="content">
             <div>
                 <h3>Ulubione tematy:</h3>
-                {% for topic in topics %}
-                <p><a href="{% url 'topics_page' topic.id %}">{{topic}}</a></p>
+                {% for ele in activity_data %}
+                <p>{{ele.activity_topic.topic_name}}</p>
+
                 {% endfor %}
             </div>
             <div>

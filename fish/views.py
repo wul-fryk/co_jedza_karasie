@@ -4,7 +4,7 @@ from .forms import User_form, Room_form
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .models import Room, Message, Topic
+from .models import Room, Message, Topic, User_activity
 from django.db.models import Q
 # Create your views here.
 
@@ -73,7 +73,6 @@ def home(request):
 def room_form(request):
     room_form = Room_form()
     topics = Topic.objects.all()
-    context = {"room_form":room_form, 'topics':topics}
     if request.method == "POST":
         topic_name_request = request.POST.get("room_topic")
         topic_room, created = Topic.objects.get_or_create(topic_name=topic_name_request)
@@ -83,9 +82,13 @@ def room_form(request):
             room_name=request.POST.get('room_name'),
             room_desription=request.POST.get('room_desription'),
         )
-
-
+        if not User_activity.objects.filter(activity_topic=topic_room, activity_user=request.user):
+            User_activity.objects.create(
+                activity_user = request.user,
+                activity_topic = topic_room
+            )
         return redirect("home")
+    context = {"room_form":room_form, 'topics':topics}
     return render(request, 'fish/room_form.html', context)
 
 def room_page(request, pk):
@@ -98,8 +101,15 @@ def room_page(request, pk):
             owner = request.user,
             body = request.POST.get('body')
         )
+        if not User_activity.objects.filter(activity_topic=rooms.room_topic.id, activity_user=request.user):
+            User_activity.objects.create(
+                activity_user = request.user,
+                activity_topic = rooms.room_topic
+            )
         return redirect('room_page', rooms.id)
     return render(request, 'fish/room_page.html', context)
+
+
 
 def delete_message(request, pk):
     message = Message.objects.get(id=pk)
@@ -118,11 +128,12 @@ def delete_room(request, pk):
 def update(request, pk):
     room = Room.objects.get(id=pk)
     room_form = Room_form(instance=room)
-    context = {'room':room, 'room_form':room_form}
+    topics = Topic.objects.all()
+    context = {'room':room, 'room_form':room_form, 'topics':topics}
     if request.method == 'POST':
-        topic_name_request = request.POST.get("room_topic")
+        topic_name_request = request.POST.get('room_topic')
         topic_room, created = Topic.objects.get_or_create(topic_name=topic_name_request)
-        room.topic_name = topic_room
+        room.room_topic = topic_room
         room_desription_request = request.POST.get('room_desription')
         room.room_desription = room_desription_request
         room_name_request = request.POST.get('room_name')
@@ -133,10 +144,10 @@ def update(request, pk):
 
 def profile_page(request, pk):
     profile_link = User.objects.get(id=pk)
+    activity_data = User_activity.objects.filter(activity_user=profile_link)
     rooms = profile_link.room_set.all()
     message = profile_link.message_set.all()
-    topics = Topic.objects.all()
-    context = {'profile_link':profile_link, 'message':message, 'topics':topics, 'rooms':rooms}
+    context = {'profile_link':profile_link, 'message':message, 'rooms':rooms, 'activity_data':activity_data}
     return render(request, 'fish/profile_page.html', context)
 
 def topics_page(request, pk):
