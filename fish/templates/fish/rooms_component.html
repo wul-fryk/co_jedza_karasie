@@ -1,11 +1,18 @@
-{% for room in rooms %}
 <div>
-    <h3>Ostatnio zaktualizowane fora:</h3>
+    <h3>Ostatnio zaktualizowane fora:</h3> 
     <a href="{% url 'room_form' %}">Stwórz pokój</a>
-    {% if request.user == room.host %}
-    <a href="{% url 'delete_room' room.id %}">Usuń</a>
-    {% endif %}
+    <hr>
+    {% for room in rooms %}
+    <div>
+        
+        {% if request.user == room.host %}
+        <a href="{% url 'update' room.id %}">Edytuj</a>
+        <a href="{% url 'delete_room' room.id %}">Usuń</a>
+        {% endif %}
+        <a href="{% url 'profile_page' room.host.id %}">{{room.host}}</a>
 
-    <h3><a href="{% url 'room_page' room.id %}">{{room}}</a></h3>
+        <h3><a href="{% url 'room_page' room.id %}">{{room}}</a></h3>
+        <hr>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}

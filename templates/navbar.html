@@ -1,6 +1,6 @@
 <style>
     .navbar {
-        background-color: royalblue;
+        background-color:deepskyblue;
     }
 </style>
 
@@ -11,8 +11,14 @@
     <a href="{% url 'user_login' %}">Zaloguj</a>
     {% else %}
     <a href="{% url 'user_logout' %}">Wyloguj</a>
-    <a href="{% url 'profile_page' user.id %}">@{{user.username}}</a>
     {% endif %}
 
-
+    <form style='display:inline;' method="POST" action="{% url 'search_bar' %}">
+        {% csrf_token %}
+        <input tpye="text" name="search_bar"/>
+    </form>
+    
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'profile_page' user.id %}">@{{user.username}}</a>
+    {% endif %}
 </div>

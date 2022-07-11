@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+{% block content %}
+<ul>
+    {% for option in room_filter %}
+    <li>
+        <a href="{% url 'room_page' option.id %}">{{option}}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

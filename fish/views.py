@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .models import Room, Message, Topic
+from django.db.models import Q
 # Create your views here.
 
 def user_register(request):
@@ -52,8 +53,15 @@ def user_logout(request):
     logout(request)
     return redirect('/')
 
-
-
+def search(request):
+    if request.method == 'POST':
+        search = request.POST.get('search_bar')
+        room_filter = Room.objects.filter(
+            Q(room_topic__topic_name__icontains=search) |
+            Q(room_name__icontains=search) |
+            Q(room_desription__icontains=search)
+        )
+        return render(request, 'fish/search_page.html', {'room_filter':room_filter})
 
 def home(request):
     rooms = Room.objects.all()
@@ -67,11 +75,11 @@ def room_form(request):
     topics = Topic.objects.all()
     context = {"room_form":room_form, 'topics':topics}
     if request.method == "POST":
-        topic_n = request.POST.get("room_topic")
-        room_topic, created = Topic.objects.get_or_create(topic_name=topic_n)
+        topic_name_request = request.POST.get("room_topic")
+        topic_room, created = Topic.objects.get_or_create(topic_name=topic_name_request)
         Room.objects.create(
             host=request.user,
-            room_topic = room_topic,
+            room_topic = topic_room,
             room_name=request.POST.get('room_name'),
             room_desription=request.POST.get('room_desription'),
         )
@@ -109,10 +117,19 @@ def delete_room(request, pk):
 
 def update(request, pk):
     room = Room.objects.get(id=pk)
-
-    context = {'room':room}
-    return render
-
+    room_form = Room_form(instance=room)
+    context = {'room':room, 'room_form':room_form}
+    if request.method == 'POST':
+        topic_name_request = request.POST.get("room_topic")
+        topic_room, created = Topic.objects.get_or_create(topic_name=topic_name_request)
+        room.topic_name = topic_room
+        room_desription_request = request.POST.get('room_desription')
+        room.room_desription = room_desription_request
+        room_name_request = request.POST.get('room_name')
+        room.room_name = room_name_request
+        room.save()
+        return redirect('home')
+    return render(request, 'fish/update.html', context)
 
 def profile_page(request, pk):
     profile_link = User.objects.get(id=pk)
@@ -123,9 +140,9 @@ def profile_page(request, pk):
     return render(request, 'fish/profile_page.html', context)
 
 def topics_page(request, pk):
-    rooms = Room.objects.get(id=pk)
-    topics = Topic.objects.all()
-    context = {'rooms':rooms, 'topics':topics}
+    topics = Topic.objects.get(id=pk)
+    rooms = topics.room_set.all()
+    context = {'topics':topics, 'rooms':rooms}
     return render(request, 'fish/topics.html', context)
 
 def message_component(request):
