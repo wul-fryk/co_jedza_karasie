@@ -3,7 +3,7 @@
 <style>
     .contenet_container {
         display: grid;
-        grid-template-columns: 2fr 3fr 1fr;
+        grid-template-columns: 10fr 3fr 30fr 3fr 10fr;
     }
 </style>
 <small>{{rooms.room_topic}}, <a href="{% url 'profile_page' rooms.host.id %}">@{{rooms.host}}</a></small>
@@ -14,9 +14,9 @@
     </div>
     <div class="contenet_container">
         <div>
-            {{rooms.room_desription}}
+            <h3>{{rooms.room_desription}}</h3>
         </div>
-    
+        <div></div>
         <div>
     
             <div>
@@ -38,7 +38,13 @@
                 {% endfor %}
             </div>
         </div>
-        
+        <div></div>
+        <div>
+            <h3>Uczestnicy:</h3>
+            {% for part in parties %}
+            <p><a href="{% url 'profile_page' part.id %}">{{part}}</a></p>
+            {% endfor %}
+        </div>
     </div>
     
 </div>

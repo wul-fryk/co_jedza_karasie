@@ -94,7 +94,8 @@ def room_form(request):
 def room_page(request, pk):
     rooms = Room.objects.get(id=pk)
     messages_room = rooms.message_set.all()
-    context = {'rooms':rooms,"messages_room":messages_room}
+    parties = rooms.participants.all()
+    context = {'rooms':rooms,"messages_room":messages_room, 'parties':parties}
     if request.method == 'POST':
         Message.objects.create(
             room_messages = rooms,
@@ -106,6 +107,7 @@ def room_page(request, pk):
                 activity_user = request.user,
                 activity_topic = rooms.room_topic
             )
+        rooms.participants.add(request.user)
         return redirect('room_page', rooms.id)
     return render(request, 'fish/room_page.html', context)
 
