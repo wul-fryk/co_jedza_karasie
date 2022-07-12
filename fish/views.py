@@ -64,9 +64,9 @@ def search(request):
         return render(request, 'fish/search_page.html', {'room_filter':room_filter})
 
 def home(request):
-    rooms = Room.objects.all()
-    topics = Topic.objects.all()
-    messages_comp = Message.objects.all()
+    rooms = Room.objects.all()[0:6]
+    topics = Topic.objects.all()[0:15]
+    messages_comp = Message.objects.all()[0:15]
     context = {'rooms':rooms, 'messages_comp':messages_comp, 'topics':topics}
     return render(request, 'fish/home.html', context)
 
@@ -159,7 +159,7 @@ def topics_page(request, pk):
     return render(request, 'fish/topics.html', context)
 
 def message_component(request):
-    messages_comp = Message.objects.all()
+    messages_comp = Message.objects.all()[0:5]
     context = {"messages_comp":messages_comp}
     return render(request, 'fish/messages_component.html', context)
 
@@ -169,8 +169,6 @@ def rooms_component(request):
     return render(request, 'fish/rooms_component.html', context)
 
 def topics_component(request):
-    topics_comp = Topic.objects.all()
-    if request.method == 'POST':
-        pass
+    topics_comp = Topic.objects.all()[0:2]
     context = {'topics_comp':topics_comp}
     return render(request, 'fish/topics_component.html', context)

@@ -3,7 +3,11 @@
     <ul>
         {% for mesg in messages_comp %}
         <li>
-            {{mesg}}
+            <p>
+                <a href="{% url 'profile_page' mesg.owner.id %}">@{{mesg.owner}}</a>:
+                <a href="{% url 'room_page' mesg.room_messages.id %}">{{mesg}}</a>
+            </p>
+
         </li>
         {% endfor %}
     </ul>
