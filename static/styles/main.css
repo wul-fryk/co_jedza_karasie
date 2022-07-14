@@ -1,13 +1,18 @@
+*{
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #BDE6FF;
+    background-color: lightgrey;
     font-family: 'Lato', sans-serif;
+    font-size: 18px;
 }
 
 .navbar {
     background-color: black;
-    border-top: 100px solid black;
-    border-left: 100px solid black;
-    border-right: 100px solid black ;
+    display: block;
+    width: 100%;
+    padding: 15px;
 }
 
 .search {
@@ -15,11 +20,11 @@ body {
 }
 a.option:link {color:white; text-decoration:none;}
 a.option:visited {color:white; text-decoration:none;}
-a.option:hover {color:grey; text-decoration:none;}
+a.option:hover {color:black; text-decoration:none;}
 
 a.option_home:link {color:white; text-decoration:none;}
 a.option_home:visited {color:white; text-decoration:none;}
-a.option_home:hover {color:grey; text-decoration:none;}
+a.option_home:hover {color:black; text-decoration:none;}
 
 .option_home {
     float: left;
@@ -27,4 +32,15 @@ a.option_home:hover {color:grey; text-decoration:none;}
 .option {
     float: right;
 }
+.option:hover {
+    border: 3px dotted white;
+}
 
+.opt:not(search) {
+    padding: 5px;
+    opacity: 0,8;
+}
+
+.opt:hover { 
+    background-color: #d9ecfa;
+}

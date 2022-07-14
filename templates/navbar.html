@@ -1,26 +1,26 @@
 <div class="navbar">
     <div>
-        <a href="{% url 'home' %}" class="option_home">Home</a>
+        <a href="{% url 'home' %}" class="option_home opt">Home</a>
     </div>
 
     <div>
         {% if not request.user.is_authenticated %}
-        <a href="{% url 'user_login' %}" class="option">Zaloguj</a>
+        <a href="{% url 'user_login' %}" class="option opt">Zaloguj</a>
         {% else %}
-        <a href="{% url 'user_logout' %}" class="option">Wyloguj</a>
+        <a href="{% url 'user_logout' %}" class="option opt">Wyloguj</a>
         {% endif %}
     </div>
 
     <div>
         {% if request.user.is_authenticated %}
-        <a href="{% url 'profile_page' user.id %}" class="option">@{{user.username}}</a>
+        <a href="{% url 'profile_page' user.id %}" class="option opt">@{{user.username}}</a>
         {% endif %}
     </div>
     
     <div>
         <form style='display:inline;' method="POST" action="{% url 'search_bar' %}">
             {% csrf_token %}
-            <input tpye="text" name="search_bar" class="option search"/>
+            <input tpye="text" name="search_bar" class="option search opt"/>
         </form>
     </div>
 
