@@ -44,3 +44,16 @@ a.option_home:hover {color:black; text-decoration:none;}
 .opt:hover { 
     background-color: #d9ecfa;
 }
+
+.topic_element {
+    padding: 10px;
+    background-color: lightgrey;
+}
+
+.topic_element:hover {
+    background-color: grey;
+}
+
+a.topic_link:link {color:black; text-decoration:none;}
+a.topic_link:visited {color:black; text-decoration:none;}
+a.topic_link:hover {color:grey; text-decoration:none;}

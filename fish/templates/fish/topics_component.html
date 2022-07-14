@@ -1,10 +1,17 @@
 <div class="topics_container">
     <ul>
-        <h3>Najpopularniejsze tematy:</h3>
-        {% for topic in topics %}
-        <li>
-            <a href="{% url 'topics_page' topic.id %}">{{topic.topic_name}}</a>
-        </li>
-        {% endfor %}
+        <div id="topics_header">
+            <h3>Najpopularniejsze tematy:</h3>
+        </div>
+        <div class="topics_elements">
+            {% for topic in topics %}
+            <div class="topic_element">
+                <li>
+                    <a href="{% url 'topics_page' topic.id %}" class="topic_link">{{topic.topic_name}}</a>
+                </li>
+            </div>
+            {% endfor %}
+        </div>
+        
     </ul>
 </div>
