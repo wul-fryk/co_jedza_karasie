@@ -1,24 +1,28 @@
-<style>
-    .navbar {
-        background-color:deepskyblue;
-    }
-</style>
-
 <div class="navbar">
-    <a href="{% url 'home' %}">Home</a>
+    <div>
+        <a href="{% url 'home' %}" class="option_home">Home</a>
+    </div>
 
-    {% if not request.user.is_authenticated %}
-    <a href="{% url 'user_login' %}">Zaloguj</a>
-    {% else %}
-    <a href="{% url 'user_logout' %}">Wyloguj</a>
-    {% endif %}
+    <div>
+        {% if not request.user.is_authenticated %}
+        <a href="{% url 'user_login' %}" class="option">Zaloguj</a>
+        {% else %}
+        <a href="{% url 'user_logout' %}" class="option">Wyloguj</a>
+        {% endif %}
+    </div>
 
-    <form style='display:inline;' method="POST" action="{% url 'search_bar' %}">
-        {% csrf_token %}
-        <input tpye="text" name="search_bar"/>
-    </form>
+    <div>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'profile_page' user.id %}" class="option">@{{user.username}}</a>
+        {% endif %}
+    </div>
     
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'profile_page' user.id %}">@{{user.username}}</a>
-    {% endif %}
+    <div>
+        <form style='display:inline;' method="POST" action="{% url 'search_bar' %}">
+            {% csrf_token %}
+            <input tpye="text" name="search_bar" class="option search"/>
+        </form>
+    </div>
+
+    <div style="clear:both;"></div>
 </div>

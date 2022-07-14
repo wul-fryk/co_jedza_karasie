@@ -1,0 +1,30 @@
+body {
+    background-color: #BDE6FF;
+    font-family: 'Lato', sans-serif;
+}
+
+.navbar {
+    background-color: black;
+    border-top: 100px solid black;
+    border-left: 100px solid black;
+    border-right: 100px solid black ;
+}
+
+.search {
+    width: 200px;
+}
+a.option:link {color:white; text-decoration:none;}
+a.option:visited {color:white; text-decoration:none;}
+a.option:hover {color:grey; text-decoration:none;}
+
+a.option_home:link {color:white; text-decoration:none;}
+a.option_home:visited {color:white; text-decoration:none;}
+a.option_home:hover {color:grey; text-decoration:none;}
+
+.option_home {
+    float: left;
+}
+.option {
+    float: right;
+}
+
