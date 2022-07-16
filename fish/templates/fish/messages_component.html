@@ -1,5 +1,5 @@
 <div id="messagess_container">
-    <div class="mesagess_header">
+    <div id="mesagess_header">
         <h3>Ostatnie wiadomosci użytkowników:</h3>
     </div>
     <ul>
@@ -7,8 +7,8 @@
         <li>
             <p>
                 <div class="messages_body_owner">
-                    <a href="{% url 'profile_page' mesg.owner.id %}" class="message_link">@{{mesg.owner}}</a>:
-                    <a href="{% url 'room_page' mesg.room_messages.id %}" class="message_link">{{mesg}}</a>    
+                    <a href="{% url 'profile_page' mesg.owner.id %}" class="main_page_links">@{{mesg.owner}}</a>:
+                    <a href="{% url 'room_page' mesg.room_messages.id %}" class="main_page_links">{{mesg}}</a>    
                 </div>
             </p>
 

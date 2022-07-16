@@ -7,7 +7,7 @@
             {% for topic in topics %}
             <div class="topic_element">
                 <li>
-                    <a href="{% url 'topics_page' topic.id %}" class="topic_link">{{topic.topic_name}}</a>
+                    <a href="{% url 'topics_page' topic.id %}" class="main_page_links">{{topic.topic_name}}</a>
                 </li>
             </div>
             {% endfor %}

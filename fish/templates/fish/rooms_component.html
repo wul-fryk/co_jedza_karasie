@@ -2,20 +2,21 @@
     <div id="rooms_comp_header">
         <h3>Ostatnio zaktualizowane fora:</h3> 
     </div>
-    <div id="create_room">
-
+    <div>
+        <a href="{% url 'room_form' %}" class="main_page_links">Stwórz pokój</a>
     </div>
-    <a href="{% url 'room_form' %}">Stwórz pokój</a>
-    </div>
-
     {% for room in rooms %}
     <div>
         {% if request.user == room.host %}
-        <a href="{% url 'update' room.id %}" class="rooms_comp_buttons">Edytuj</a>
-        <a href="{% url 'delete_room' room.id %}" class="rooms_comp_buttons">Usuń</a>
+        <a href="{% url 'update' room.id %}" class="main_page_links">Edytuj</a>
+        <a href="{% url 'delete_room' room.id %}" class="main_page_links">Usuń</a>
         {% endif %}
-        <a href="{% url 'profile_page' room.host.id %}" class="rooms_comp_user">{{room.host}}</a>
-        <h3><a href="{% url 'room_page' room.id %}">{{room}}</a></h3> 
+        <div>
+            <a href="{% url 'profile_page' room.host.id %}" class="main_page_links first">@{{room.host}}</a>
+            <h3><a href="{% url 'room_page' room.id %}" class="main_page_links second">{{room}}</a></h3> 
+        </div>
     </div>
     {% endfor %}
 </div>
+
+ 

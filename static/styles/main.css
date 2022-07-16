@@ -6,10 +6,11 @@ body {
     background-color: lightgrey;
     font-family: 'Lato', sans-serif;
     font-size: 18px;
-    width: 100%;
+    width: 1000px;
     margin: auto;
 }
 
+/* navbar */
 .navbar {
     background-color: black;
     display: block;
@@ -21,12 +22,10 @@ body {
     width: 100%;
     width: auto;
 }
-a.option:link {color:white; text-decoration:none;}
-a.option:visited {color:white; text-decoration:none;}
+a.option:link, a.option:visited {color:white; text-decoration:none;}
 a.option:hover {color:black; text-decoration:none;}
 
-a.option_home:link {color:white; text-decoration:none;}
-a.option_home:visited {color:white; text-decoration:none;}
+a.option_home:link, a.option_home:visited {color:white; text-decoration:none;}
 a.option_home:hover {color:black; text-decoration:none;}
 
 .option_home {
@@ -44,22 +43,62 @@ a.option_home:hover {color:black; text-decoration:none;}
 .opt:hover { 
     background-color: #d9ecfa;
 }
+/* end navbar */
 
+/* main content */
 #topics_container {
-    width: 10vw;
     height: 100%;
+    width: 180px;
+    padding-right: 40px;
     float: left;
 }
 
-#messagess_container {
-    width: 50%;
-    height: 100%;
-    float: left;
+#topics_header {
+    text-align: center;
 }
 
 #rooms_container {
-    width: 10vw;
     height: 100%;
+    width: 580px;
+    padding-right: 20px;
+    float: left;
+}
+
+#rooms_comp_header {
+    text-align: center;
+}
+
+#messagess_container {
+    height: 100%;
+    width: 200px;
     float: right;
+}
+
+#mesagess_header {
+    text-align: center;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover:not(.opt) {
+    font-size: 130%;
+}
+
+a:active {
+    color: red;
+    text-decoration: none;
+}
+
+.second {
+    position: relative;
+    top: -15px;
 }
 
