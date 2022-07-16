@@ -4,26 +4,32 @@
     <div>
         <form action="" method="POST">
             {% csrf_token %}
-            <label class="login_c lrf">Login:</label>
-            <input type="text" class="login_c lrf" name="username" placeholder="Wprowadź login" required/>
+            <div class="login_c">
+                <label class="login_c lrf">Login:</label>
+                <input type="text" class="login_c lrf" name="username" placeholder="Wprowadź login" required/>
+
+            </div>
             
             <br>
-
-            <label id="login_c lrf">Hasło:</label>
-            <input type="password" class="login_c lrf" name="password" placeholder="Wprowadź hasło" required/>
-            
+            <div class="login_c">
+                <label id="login_c lrf">Hasło:</label>
+                <input type="password" class="login_c lrf" name="password" placeholder="Wprowadź hasło" required/>
+            </div>
             <br>
-
-            <input type="submit" class="login_c" name="login_register_button"/>
-
-            <ul class="messages login_c">
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-         
+            <div class="login_c">
+                <input type="submit" class="login_c" name="login_register_button"/>
+            </div>
+            <div class="login_c">
+                <ul class="messages login_c">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
             <p class="login_c">Nie masz jeszcze konta?</p>
-            <a href="{% url 'register' %}" class="login_c">Zarejestruj się</a>
+            <div class="login_c">
+                <a href="{% url 'register' %}" class="login_c">Zarejestruj się</a>
+            </div>
         </form>
     </div>
     {% else %}
