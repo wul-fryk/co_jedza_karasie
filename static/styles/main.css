@@ -97,7 +97,9 @@ a:active {
     font-size: 20px;
     padding-top: 5px;
 }
+/* end main content */
 
+/* login page */
 .lrf {
     display: inline-block;
 }
@@ -105,8 +107,20 @@ a:active {
 .login_c {
     margin-left: auto;
 }
+/* end login page */
 
+/* user page */
 .profile_container {
     display: grid;
     grid-template-columns: 10fr 3fr 30fr 3fr 10fr;
+}
+
+#profile_left {
+    padding-right: 5px;
+    border-right: 1px dotted white;
+}
+
+#profile_right {
+    padding-left: 5px;
+    border-left: 1px dotted white;
 }

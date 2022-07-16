@@ -65,7 +65,7 @@ def search(request):
 
 def home(request):
     rooms = Room.objects.all()[0:6]
-    topics = Topic.objects.all()[0:15]
+    topics = Topic.objects.all()[0:13]
     messages_comp = Message.objects.all()[0:13]
     context = {'rooms':rooms, 'messages_comp':messages_comp, 'topics':topics}
     return render(request, 'fish/home.html', context)
@@ -146,9 +146,9 @@ def update(request, pk):
 
 def profile_page(request, pk):
     profile_link = User.objects.get(id=pk)
-    activity_data = User_activity.objects.filter(activity_user=profile_link)
-    rooms = profile_link.room_set.all()
-    message = profile_link.message_set.all()
+    activity_data = User_activity.objects.filter(activity_user=profile_link)[0:13]
+    rooms = profile_link.room_set.all()[0:10]
+    message = profile_link.message_set.all()[0:10]
     context = {'profile_link':profile_link, 'message':message, 'rooms':rooms, 'activity_data':activity_data}
     return render(request, 'fish/profile_page.html', context)
 

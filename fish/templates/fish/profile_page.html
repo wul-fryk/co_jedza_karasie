@@ -1,31 +1,28 @@
 {% extends 'main.html' %}
 {% block content %}
-    <div class="profile_container">
-        <h2>Profil użytkownika: <a href="{% url 'profile_page' user.id %}">@{{profile_link}}</a></h2>
-        <div class="content">
-            <div>
-                <h3>Ulubione tematy:</h3>
-                {% for ele in activity_data %}
-                <p>{{ele.activity_topic.topic_name}}</p>
+<h2 class="profile_header">Profil użytkownika: <a href="{% url 'profile_page' user.id %}">@{{profile_link}}</a></h2>
 
-                {% endfor %}
-            </div>
-            <div>
-                <h3>Ostatnia aktywność:</h3>
-                {% for mess in message %}
-                <p><a href="{% url 'room_page' mess.room_messages.id %}">{{mess.room_messages}}</a>: {{mess}} |{{mess.created|timesince}}</p>
-                {% endfor %}
-            </div>
-            <div>
-                <h3>Rozmowy rozpoczęte przez <a href="{% url 'profile_page' user.id %}">@{{profile_link}}:</a></h3>
-                {% for room in rooms %}
-                <p><a href="{% url 'room_page' room.id %}">{{room}}</a></p>
-                {% endfor %}
-            </div>
-        </div>
+<div class="profile_container">
+    <div id="profile_left">
+        <h3>Ulubione tematy:</h3>
+        {% for ele in activity_data %}
+        <p>{{ele.activity_topic.topic_name}}</p>
+
+        {% endfor %}
     </div>
-
-
-
-    
+    <div></div>
+    <div>
+        <h3>Ostatnia aktywność:</h3>
+        {% for mess in message %}
+        <p><a href="{% url 'room_page' mess.room_messages.id %}">{{mess.room_messages}}</a>: {{mess}} |{{mess.created|timesince}}</p>
+        {% endfor %}
+    </div>
+    <div></div>
+    <div id="profile_right">
+        <h3>Rozmowy rozpoczęte przez <a href="{% url 'profile_page' user.id %}">@{{profile_link}}:</a></h3>
+        {% for room in rooms %}
+        <p><a href="{% url 'room_page' room.id %}">{{room}}</a></p>
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}
