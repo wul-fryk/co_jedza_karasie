@@ -6,6 +6,8 @@ body {
     background-color: lightgrey;
     font-family: 'Lato', sans-serif;
     font-size: 18px;
+    width: 100%;
+    margin: auto;
 }
 
 .navbar {
@@ -16,7 +18,8 @@ body {
 }
 
 .search {
-    width: 200px;
+    width: 100%;
+    width: auto;
 }
 a.option:link {color:white; text-decoration:none;}
 a.option:visited {color:white; text-decoration:none;}
@@ -32,9 +35,6 @@ a.option_home:hover {color:black; text-decoration:none;}
 .option {
     float: right;
 }
-.option:hover {
-    border: 3px dotted white;
-}
 
 .opt:not(search) {
     padding: 5px;
@@ -45,15 +45,21 @@ a.option_home:hover {color:black; text-decoration:none;}
     background-color: #d9ecfa;
 }
 
-.topic_element {
-    padding: 10px;
-    background-color: lightgrey;
+#topics_container {
+    width: 10vw;
+    height: 100%;
+    float: left;
 }
 
-.topic_element:hover {
-    background-color: grey;
+#messagess_container {
+    width: 50%;
+    height: 100%;
+    float: left;
 }
 
-a.topic_link:link {color:black; text-decoration:none;}
-a.topic_link:visited {color:black; text-decoration:none;}
-a.topic_link:hover {color:grey; text-decoration:none;}
+#rooms_container {
+    width: 10vw;
+    height: 100%;
+    float: right;
+}
+

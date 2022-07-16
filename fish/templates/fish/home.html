@@ -1,13 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<style>
-    .home_page_container {
-        display: grid;
-        grid-template-columns: 2fr 3fr 1fr;
-    }
-
-</style>
 <div class="home_page_container">
     <div>
         {% include 'fish/topics_component.html' %}
@@ -18,5 +11,6 @@
     <div>
         {% include 'fish/messages_component.html' %}
     </div>
+    <div style="clear: both;"></div>
 </div>
 {% endblock content %}

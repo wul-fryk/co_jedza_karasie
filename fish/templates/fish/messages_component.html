@@ -1,11 +1,15 @@
-<div>
-    <h3>Ostatnie wiadomosci użytkowników:</h3>
+<div id="messagess_container">
+    <div class="mesagess_header">
+        <h3>Ostatnie wiadomosci użytkowników:</h3>
+    </div>
     <ul>
         {% for mesg in messages_comp %}
         <li>
             <p>
-                <a href="{% url 'profile_page' mesg.owner.id %}">@{{mesg.owner}}</a>:
-                <a href="{% url 'room_page' mesg.room_messages.id %}">{{mesg}}</a>
+                <div class="messages_body_owner">
+                    <a href="{% url 'profile_page' mesg.owner.id %}" class="message_link">@{{mesg.owner}}</a>:
+                    <a href="{% url 'room_page' mesg.room_messages.id %}" class="message_link">{{mesg}}</a>    
+                </div>
             </p>
 
         </li>
