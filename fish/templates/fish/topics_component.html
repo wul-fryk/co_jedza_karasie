@@ -5,7 +5,7 @@
     <ul>
         <div id="topics_elements">
             {% for topic in topics %}
-            <div class="topic_element">
+            <div class="topic_element tm">
                 <li>
                     <a href="{% url 'topics_page' topic.id %}" class="main_page_links">{{topic.topic_name}}</a>
                 </li>

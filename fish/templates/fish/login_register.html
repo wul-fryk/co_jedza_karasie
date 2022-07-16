@@ -4,30 +4,34 @@
     <div>
         <form action="" method="POST">
             {% csrf_token %}
-            <label>Login:</label>
-            <input type="text" name="username" placeholder="Wprowadź login" required/>
+            <label class="login_c lrf">Login:</label>
+            <input type="text" class="login_c lrf" name="username" placeholder="Wprowadź login" required/>
             
-            <label>Hasło:</label>
-            <input type="password" name="password" placeholder="Wprowadź hasło" required/>
-            
-            <input type="submit" name="login_register_button"/>
+            <br>
 
-            <ul class="messages">
+            <label id="login_c lrf">Hasło:</label>
+            <input type="password" class="login_c lrf" name="password" placeholder="Wprowadź hasło" required/>
+            
+            <br>
+
+            <input type="submit" class="login_c" name="login_register_button"/>
+
+            <ul class="messages login_c">
                 {% for message in messages %}
                 <li>{{ message }}</li>
                 {% endfor %}
             </ul>
          
-            <p>Nie masz jeszcze konta?</p>
-            <a href="{% url 'register' %}">Zarejestruj się</a>
+            <p class="login_c">Nie masz jeszcze konta?</p>
+            <a href="{% url 'register' %}" class="login_c">Zarejestruj się</a>
         </form>
     </div>
     {% else %}
         <div>
-            <form action="" method="POST">
+            <form action="" method="POST" class="login_c">
                 {% csrf_token %}
                 {{form_register}}
-                <input type="submit" name="Potwierdź"/>
+                <input type="submit" class="login_c" name="Potwierdź"/>
             </form>
         </div>
     {% endif %}

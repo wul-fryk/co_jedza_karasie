@@ -3,16 +3,13 @@
         <h3>Ostatnie wiadomosci użytkowników:</h3>
     </div>
     <ul>
-        {% for mesg in messages_comp %}
-        <li>
-            <p>
-                <div class="messages_body_owner">
-                    <a href="{% url 'profile_page' mesg.owner.id %}" class="main_page_links">@{{mesg.owner}}</a>:
-                    <a href="{% url 'room_page' mesg.room_messages.id %}" class="main_page_links">{{mesg}}</a>    
-                </div>
-            </p>
-
-        </li>
-        {% endfor %}
+        <div class="tm">
+            {% for mesg in messages_comp %}
+            <li class="tm">
+                <a href="{% url 'profile_page' mesg.owner.id %}" class="main_page_links">@{{mesg.owner}}</a>:
+                <a href="{% url 'room_page' mesg.room_messages.id %}" class="main_page_links">{{mesg}}</a>
+            </li>
+            {% endfor %}
+        </div>
     </ul>
 </div>

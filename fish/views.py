@@ -66,7 +66,7 @@ def search(request):
 def home(request):
     rooms = Room.objects.all()[0:6]
     topics = Topic.objects.all()[0:15]
-    messages_comp = Message.objects.all()[0:15]
+    messages_comp = Message.objects.all()[0:13]
     context = {'rooms':rooms, 'messages_comp':messages_comp, 'topics':topics}
     return render(request, 'fish/home.html', context)
 
